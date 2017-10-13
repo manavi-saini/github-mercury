@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -23,7 +25,7 @@ import Beans.ExcelTestDetails;
 @Test
 public class Main extends InitializeBrowser {
 
-	//static Logger logger = LogManager.getLogger(Main.class);
+	    static Logger logger = LogManager.getLogger(Main.class);
 		public static ExcelTestDetails testDetails = new ExcelTestDetails();
 		RunManager runmgr = new RunManager();
 		public String[] Mod;
@@ -33,6 +35,7 @@ public class Main extends InitializeBrowser {
 		//private static final Logger logger = LogManager.getLogger(Main.class);
 				
 		public static String getPropValues(String propertyName) {
+			logger.info("Getting Property value");
 			return prop.getProperty(propertyName);
 		}
 		
