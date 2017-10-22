@@ -15,7 +15,6 @@ import Common.InitializeBrowser;
 import Common.XPathObjects;
 import jxl.Sheet;
 import jxl.Workbook;
-import Beans.FlightDetailsOne;
 
 public class FlightDetails extends InitializeBrowser {
 	

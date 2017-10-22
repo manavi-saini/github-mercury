@@ -19,6 +19,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.ISuite;
+import org.testng.ISuiteListener;
+import org.testng.ITestListener;
+import org.testng.Reporter;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeSuite;
@@ -26,31 +30,29 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import Beans.ExcelTestDetails;
-import Beans.FlightDetailsOne;
 import Beans.RunManagerInfo;
-import TestScripts.Login;
 
-public class InitializeBrowser {
+public class InitializeBrowser{
 
 	protected static WebDriver driver;
 	public ExcelTestDetails testDetails = new ExcelTestDetails();
 	public Map<Integer,String> moduledetails=new HashMap<Integer,String>();
 	public static List<RunManagerInfo> runManagerInfoList = new ArrayList<RunManagerInfo>();
-	public static Map<Integer,FlightDetailsOne> flightValuesList = new HashMap<Integer,FlightDetailsOne>();
+	//public static Map<Integer,FlightDetailsOne> flightValuesList = new HashMap<Integer,FlightDetailsOne>();
 	public String strPresentDir;
 	public static Properties prop;
 	private static InputStream inputStream;
 	String[] strConfigValues = new String[10];
 	public static Map m1= new HashMap<String, String>();
 	public static String filePath = null;
-	
 		
 	public static String getRelativePath()
 	{
-		System.out.println(new File(System.getProperty("user.dir")).getAbsolutePath());
+		System.out.println("System path: "+new File(System.getProperty("user.dir")).getAbsolutePath());
 		String relativePath = new File(System.getProperty("user.dir")).getAbsolutePath();
 		return relativePath;
 	}
+	
 	
 	@BeforeSuite
 	public void getConfigValues(){

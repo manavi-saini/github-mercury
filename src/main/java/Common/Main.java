@@ -16,12 +16,14 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import Common.RunManager;
 
 import Beans.ExcelTestDetails;
 
+@Listeners(Listerners.class)
 @Test
 public class Main extends InitializeBrowser {
 

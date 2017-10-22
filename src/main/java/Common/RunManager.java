@@ -18,7 +18,6 @@ import Common.ReportingFunction;
 
 import Common.ThreadExecutor;
 import Beans.ExcelTestDetails;
-import Beans.FlightDetailsOne;
 import Beans.RunManagerInfo;
 import jxl.Sheet;
 import jxl.Workbook;
@@ -30,6 +29,11 @@ import jxl.write.biff.RowsExceededException;
 
 
 public class RunManager extends InitializeBrowser {
+	
+	public static final String USERNAME = "manavi-saini";
+	public static final String ACCESS_KEY = "fa7e10dc-d29c-4429-93f5-ef5f07d791d5";
+	public static final String URL = "http://" + USERNAME + ":" + ACCESS_KEY
+			+ "@ondemand.saucelabs.com:80/wd/hub";
 	
 	public static String[] strModValues;
 	public int intRowCount=0;

@@ -14,10 +14,14 @@ import Services.OneWayTicket;
 
 import Beans.RunManagerInfo;
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.Listeners;
+import org.testng.annotations.Test;
 
 import Common.CommonMethods;
 
 import Common.InitializeBrowser;
+import Common.Listerners;
+
 
 public class Flights extends InitializeBrowser {
 	RunManager runmngr = new RunManager();
@@ -34,6 +38,7 @@ public class Flights extends InitializeBrowser {
 	long startTime = System.currentTimeMillis();
 	long endtime = System.currentTimeMillis();
 
+	@Test
 	public synchronized void bookEconomyRoundTrip(WebDriver driver, RunManagerInfo runManagerInfoObj) throws Exception {
 
 		try{
@@ -89,9 +94,11 @@ public class Flights extends InitializeBrowser {
 		}
 		catch (Exception e) {
 			e.printStackTrace();
+		
 		}
 	}
 	
+	@Test
 	public synchronized void bookBusinessRoundTrip(WebDriver driver, RunManagerInfo runManagerInfoObj) throws Exception {
 
 		try{

@@ -6,35 +6,53 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import java.net.URL;
+import java.util.Set;
 
 import Beans.ExcelTestDetails;
 import Beans.RunManagerInfo;
 
 public class ReportingFunction extends InitializeBrowser {
 	
+	public static final String USERNAME = "manavi-saini";
+	public static final String ACCESS_KEY = "fa7e10dc-d29c-4429-93f5-ef5f07d791d5";
+	public static final String URL = "http://" + USERNAME + ":" + ACCESS_KEY
+			+ "@ondemand.saucelabs.com:80/wd/hub";
+	
 	XPathObjects xpo = new XPathObjects();
 	CommonMethods cm = new CommonMethods();
+	String testname = null;
 	
 	public synchronized WebDriver Initialize(RunManagerInfo runManagerInfoObj){
 		
 		try{
 			//Main.loadProps();
 			//testDetails = Main.getExcelValues();
+			testname = runManagerInfoObj.getstrCaseName().toString();
 			System.out.println("After Main");
-			if(runManagerInfoObj.getstrBrowser().equalsIgnoreCase("IE")){
+			if(runManagerInfoObj.getstrBrowser().equalsIgnoreCase("IE")){				
+				System.setProperty("java.net.preferIPv4Stack", "true");
 				DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer();
 				capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
 				capabilities.setCapability(InternetExplorerDriver.IE_ENSURE_CLEAN_SESSION, true);
+				capabilities.setCapability("platform", "Windows 7");
+				capabilities.setCapability("version", "11");
+				capabilities.setCapability("name", testname);
 				System.setProperty("webdriver.ie.driver", ".//IEDriverServer.exe");	
-				driver = new InternetExplorerDriver(capabilities);
+				driver = new RemoteWebDriver(new URL(URL),capabilities);
 				System.out.println("IE launched successfully");			
 				System.out.println("Initiating the session");
 			}
 			else if(runManagerInfoObj.getstrBrowser().equalsIgnoreCase("Chrome")){
+				System.setProperty("java.net.preferIPv4Stack", "true");
 				DesiredCapabilities capabilities = DesiredCapabilities.chrome();
 				//capabilities.setCapability(ChromeDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
+				capabilities.setCapability("platform", "Windows 7");
+				capabilities.setCapability("version", "61.0");
+				capabilities.setCapability("name", testname);
 				System.setProperty("webdriver.chrome.driver", ".//chromedriver.exe");
-				driver = new ChromeDriver(capabilities);
+				driver = new RemoteWebDriver(new URL(URL),capabilities);
 				System.out.println("CHROME launched successfully");			
 				System.out.println("Initiating the session");
 			}
@@ -71,6 +89,7 @@ public class ReportingFunction extends InitializeBrowser {
 			String currentUrl=driver.getCurrentUrl();
 			System.out.println("Current URL: "+currentUrl);
 			System.out.println("Current BROWSER: "+runManagerInfoObj.getstrBrowser());
+			
 			
 			if(currentUrl.contains("newtours")){
 				System.out.println("Browser: "+runManagerInfoObj.getstrBrowser()+" is launched");
@@ -139,7 +158,7 @@ public class ReportingFunction extends InitializeBrowser {
 					loginButton.click();
 					System.out.println("Login button clicked");
 					
-					Thread.sleep(5000);
+					Thread.sleep(10000);
 					
 					if((cm.ExplicitWait("XPATH", xpo.FlightFinderImg, driver)) || (cm.ExplicitWait("XPATH", xpo.SignOffLink, driver))){
 						WebElement user = driver.findElement(By.xpath(xpo.SignOffLink));

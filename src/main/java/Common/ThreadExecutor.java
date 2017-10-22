@@ -4,6 +4,11 @@ import Beans.RunManagerInfo;
 
 public class ThreadExecutor implements Runnable{
 	
+	public static final String USERNAME = "manavi-saini";
+	public static final String ACCESS_KEY = "fa7e10dc-d29c-4429-93f5-ef5f07d791d5";
+	public static final String URL = "http://" + USERNAME + ":" + ACCESS_KEY
+			+ "@ondemand.saucelabs.com:80/wd/hub";
+	
 	String strModuleName ;
 	String strManualTC  ;
 	String strCaseName ;
