@@ -44,6 +44,7 @@ public class Main extends InitializeBrowser {
 		public synchronized void getExcelValues() throws InvalidFormatException, IOException{
 			
 			try{
+				logger.info("Excel Values Method");
 				filePath = getPropValues("ExcelPath");
 				System.out.println("Filepath: "+filePath);
 				//FileInputStream fis=new FileInputStream(filePath);
